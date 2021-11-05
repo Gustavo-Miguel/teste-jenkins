@@ -2,7 +2,7 @@ import os
 import git 
 import requests
 
-git_url = "  https://api.github.com/repos/Gustavo-Miguel/teste/pulls/1"
+git_url = "https://api.github.com/repos/Gustavo-Miguel/teste/pulls/1"
 
 def get_description():
     description = requests.get(git_url)
