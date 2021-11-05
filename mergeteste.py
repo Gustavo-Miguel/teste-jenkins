@@ -13,7 +13,8 @@ def get_description():
 
 if os.path.exists(repo_dir):
     cloned_repo = git.Repo.init(repo_dir)  
-    cloned_repo.git.stash() 
+    cloned_repo.git.stash()
+    cloned_repo.git.pull()
     print("Directory already exist!")
 else:
     cloned_repo = git.Repo.clone_from(git_url, repo_dir)
