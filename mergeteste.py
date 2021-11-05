@@ -22,7 +22,9 @@ else:
 desc = get_description()
 
 f = open("teste//CHANGELOG.md", "r")
-print(f.read())
+f.write("\n\n")
+f.write(desc)
+f.write("\n\n")
 f.close()
 
 print("END")
