@@ -14,7 +14,7 @@ def get_description():
 if os.path.exists(repo_dir):
     cloned_repo = git.Repo.init(repo_dir)  
     cloned_repo.git.stash()
-    cloned_repo.git.pull()
+    cloned_repo.git.pull('origin', main)
     print("Directory already exist!")
 else:
     cloned_repo = git.Repo.clone_from(git_url, repo_dir)
@@ -30,8 +30,9 @@ f.close()
          
 cloned_repo.index.add("*")
 cloned_repo.index.commit("Changelog commit")
+cloned_repo.git.push('origin', main)
 
-origin = cloned_repo.remote(name='origin')
-origin.push()
+#origin = cloned_repo.remote(name='origin')
+#origin.push()
 
 print("END")
