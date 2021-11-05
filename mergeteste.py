@@ -21,7 +21,7 @@ else:
 
 desc = get_description()
 
-f = open("teste//CHANGELOG.md", "a")
+f = open("teste//CHANGELOG.md", "r")
 print(f.read())
 f.close()
 
