@@ -20,4 +20,7 @@ else:
     print("Directory don't exist!")
 
 desc = get_description()
-print(desc)
+
+f = open("teste//CHANGELOG.md", "a")
+print(f)
+f.close()
