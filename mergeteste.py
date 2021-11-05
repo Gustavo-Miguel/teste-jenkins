@@ -22,5 +22,5 @@ else:
 desc = get_description()
 
 f = open("teste//CHANGELOG.md", "a")
-print(f)
+print(f.read())
 f.close()
