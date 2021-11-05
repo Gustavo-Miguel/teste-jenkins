@@ -27,4 +27,9 @@ f.write(desc)
 f.write("\n\n")
 f.close()
 
+cloned_repo.index.add("*")
+cloned_repo.index.commit("Changelog commit")
+origin = cloned_repo.remote(name='origin')
+origin.push()
+
 print("END")
