@@ -29,7 +29,7 @@ f.close()
          
 cloned_repo.index.add("*")
 cloned_repo.index.commit("Changelog commit")
-cloned_repo.git.push("origin", "feature4")
+cloned_repo.git.push('origin', 'feature4')
 
 #origin = cloned_repo.remote(name='origin')
 #origin.push()
