@@ -14,4 +14,5 @@ else:
     cloned_repo = git.Repo.clone_from(git_url, repo_dir)
     print("Directory don't exist!")
 
-print("END")
+desc = get_description()
+print(desc)
