@@ -24,3 +24,5 @@ desc = get_description()
 f = open("teste//CHANGELOG.md", "a")
 print(f.read())
 f.close()
+
+print("END")
