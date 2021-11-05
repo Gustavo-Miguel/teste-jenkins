@@ -12,11 +12,10 @@ def get_description():
     return description
 
 if os.path.exists(repo_dir):
-    os.chmod(repo_dir, 0o777)
-    os.remove(repo_dir)
-    #cloned_repo = git.Repo.init(repo_dir)    
+    cloned_repo = git.Repo.init(repo_dir)  
+    cloned_repo.index.reset('--hard','origin/main')
     print("Directory already exist!")
-#else:
+else:
     cloned_repo = git.Repo.clone_from(git_url, repo_dir)
     print("Directory don't exist!")
 
