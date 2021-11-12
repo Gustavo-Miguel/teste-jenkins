@@ -25,7 +25,7 @@ def create_branch(repo, branch_name):
 
 def update_file():
     print("Modifying the file")
-    archive = local_repo_directory+"/CHANGELOG.md"
+    archive = "CHANGELOG.md"
     opened_file = open(archive, "a")
     opened_file.write("\n\n")
     opened_file.write("TESTETESTETESTESTESTE")
