@@ -1,9 +1,7 @@
 import os
 from git import Repo
-import time
 
-
-local_repo_directory = "teste2"
+local_repo_directory = "Teste3"
 destination = 'main'
 
 def clone_repo():
@@ -27,21 +25,25 @@ def create_branch(repo, branch_name):
 
 def update_file():
     print("Modifying the file")
-    chdirectory(local_repo_directory)
-    opened_file = open("file.txt", 'a')
-    opened_file.write("{0} added at {1} \n".format(
-        "I am a new string", str(time.time())))
+    archive = local_repo_directory+"/CHANGELOG.md"
+    opened_file = open(archive, "a")
+    opened_file.write("\n\n")
+    opened_file.write("TESTETESTETESTESTESTE")
+    opened_file.write("\n\n")
+    opened_file.close()
 
 
 def add_and_commit_changes(repo):
     print("Commiting changes")
-    repo.git.add(update=True)
-    repo.git.commit("-m", "Adding a new line to the file.text file")
+    repo.index.add("*")
+    repo.index.commit("Adding a new line to the file.text file")
 
 
 def push_changes(repo):
     print("Push changes")
     repo.git.push("--set-upstream", 'origin', destination)
+    origin = repo.remotes.origin
+    origin.push(destination)
 
 
 #clone the repository
