@@ -1,7 +1,7 @@
 import os
 from git import Repo
 
-local_repo_directory = "Teste3"
+local_repo_directory = ""
 destination = 'main'
 
 def clone_repo():
@@ -49,7 +49,7 @@ def push_changes(repo):
 #clone the repository
 #clone_repo()
 
-repo = Repo(local_repo_directory)
+repo = Repo()
 #branch_name = "feature/update-txt-file" + str(time.time())
 
 #create a new branch
