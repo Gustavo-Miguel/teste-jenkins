@@ -49,7 +49,7 @@ def push_changes(repo):
 #clone the repository
 #clone_repo()
 
-repo = Repo()
+repo = Repo.init()
 #branch_name = "feature/update-txt-file" + str(time.time())
 
 #create a new branch
