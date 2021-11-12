@@ -41,7 +41,7 @@ def add_and_commit_changes(repo):
 
 def push_changes(repo):
     print("Push changes")
-    repo.git.push("--set-upstream", 'origin', destination)
+    #repo.git.push("--set-upstream", 'origin', destination)
     origin = repo.remotes.origin
     origin.push(destination)
 
