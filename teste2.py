@@ -1,16 +1,9 @@
 import os
-import aiohttp
 from git import Repo
 import time
-from decouple import config
-from gidgethub import routing, sansio
-from gidgethub import aiohttp as gh_aiohttp
-import asyncio
 
-user_name = config('USER_NAME')
-repository = config('REPOSITORY')
 
-local_repo_directory = os.path.join(os.getcwd(), repository)
+local_repo_directory = "teste2"
 destination = 'main'
 
 def clone_repo():
@@ -23,7 +16,6 @@ def clone_repo():
         print("Directory does not exists, cloning")
         Repo.clone_from("https://github.com/Gustavo-Miguel/teste-jenkins.git",
                         local_repo_directory, branch=destination)
-
 
 def chdirectory(path):
     os.chdir(path)
@@ -47,58 +39,25 @@ def add_and_commit_changes(repo):
     repo.git.commit("-m", "Adding a new line to the file.text file")
 
 
-def push_changes(repo, branch_name):
+def push_changes(repo):
     print("Push changes")
-    repo.git.push("--set-upstream", 'origin', branch_name)
+    repo.git.push("--set-upstream", 'origin', destination)
 
 
-async def setup_github(branch_name):
-    print("Setup github token")
-    api_token = config('GH_API_TOKEN')
+#clone the repository
+clone_repo()
 
-    async with aiohttp.ClientSession() as session:
-        gh = gh_aiohttp.GitHubAPI(session, user_name, oauth_token=api_token)
-        
-        #create-pull-request
-        await create_pull_request(gh, branch_name, api_token)
+repo = Repo(local_repo_directory)
+#branch_name = "feature/update-txt-file" + str(time.time())
 
-async def create_pull_request(gh, branch_name, token):
-    print("Creating PR from: " + branch_name)
-    response = await gh.post('/repos/{owner}/{repo}/pulls', url_vars={'owner': user_name, 'repo': repository}, data = {
-        'title': 'Addition of a new line to the file.txt',
-        'head': branch_name,
-        'body': '\n #What does this PR do? \n Add a new text line to the main text file',
-        'base': destination
-    }, accept='application/vnd.github.v3+json', oauth_token=token)
-    if response:
-        print("PR was created at: " + response['html_url'])
+#create a new branch
+#create_branch(repo, branch_name)
 
+# update file
+update_file()
 
-async def main():
-    #clone the repository
-    clone_repo()
+# add and commit changes
+add_and_commit_changes(repo)
 
-    repo = Repo.init(local_repo_directory)
-    branch_name = "feature/update-txt-file" + str(time.time())
-    gh_token = config('GH_API_TOKEN')
-
-    #create a new branch
-    create_branch(repo, branch_name)
-
-    # update file
-    update_file()
-
-    # add and commit changes
-    add_and_commit_changes(repo)
-
-    # push changes
-    push_changes(repo, branch_name)
-
-    #setup github credentials and session
-    await setup_github(branch_name)
-
-if __name__ == "__main__":
-    #Only for windows
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    #run main async
-    asyncio.run(main())
+# push changes
+push_changes(repo)
