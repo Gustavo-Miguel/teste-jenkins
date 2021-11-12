@@ -41,7 +41,7 @@ def add_and_commit_changes(repo):
 
 def push_changes(repo):
     print("Push changes")
-    #repo.git.push("--set-upstream", 'origin', destination)
+    repo.git.push("--set-upstream", 'origin', destination)
     origin = repo.remotes.origin
     origin.push(destination)
 
@@ -50,10 +50,10 @@ def push_changes(repo):
 #clone_repo()
 
 repo = Repo.init()
-#branch_name = "feature/update-txt-file" + str(time.time())
+branch_name = destination
 
 #create a new branch
-#create_branch(repo, branch_name)
+create_branch(repo, branch_name)
 
 # update file
 update_file()
