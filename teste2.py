@@ -47,7 +47,7 @@ def push_changes(repo):
 
 
 #clone the repository
-clone_repo()
+#clone_repo()
 
 repo = Repo(local_repo_directory)
 #branch_name = "feature/update-txt-file" + str(time.time())
